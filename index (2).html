@@ -1,0 +1,269 @@
+<!-- =============================
+ File: index.html
+ Toss‑style single page portfolio with clean UX/UI.
+ Links to: project1.html, project2.html, projecg3.html
+ ============================== -->
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D — Portfolio</title>
+  <meta name="description" content="응용통계학/금융공학 기반 데이터 마케팅 & 분석 포트폴리오" />
+  <meta property="og:title" content="D — Portfolio" />
+  <meta property="og:description" content="응용통계학/금융공학 기반 데이터 마케팅 & 분석 포트폴리오" />
+  <meta name="theme-color" content="#1461ff" />
+  <style>
+    :root{
+      --bg: #0b0c0f; /* dark base for modern feel */
+      --card: #111318;
+      --muted:#9aa3af;
+      --text:#e5e7eb;
+      --accent:#1461ff; /* Toss‑like blue */
+      --ring: rgba(20,97,255,0.25);
+      --radius: 16px;
+      --maxw: 1100px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#ffffff; --card:#f7f8fa; --muted:#6b7280; --text:#0b0c0f; --ring: rgba(20,97,255,0.18);
+      }
+      body{background:linear-gradient(180deg,#fff, #f7f8fa 50%, #eef2ff);}  
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Apple SD Gothic Neo, sans-serif;
+      color:var(--text); background: radial-gradient(80rem 80rem at 120% -10%, #193bff20, transparent 60%), var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--maxw); margin:0 auto; padding: 24px 20px}
+    header.nav{
+      position:sticky; top:0; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 88%, transparent);
+      border-bottom:1px solid color-mix(in oklab, var(--text) 12%, transparent);
+      z-index:50;
+    }
+    .nav .bar{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700}
+    .dot{width:10px; height:10px; background:var(--accent); border-radius:50%; box-shadow:0 0 0 6px var(--ring)}
+    .nav a.btn{padding:8px 14px; border:1px solid color-mix(in oklab, var(--text) 14%, transparent); border-radius:999px}
+    .nav a.btn:hover{border-color:var(--accent); box-shadow:0 0 0 6px var(--ring)}
+
+    .hero{padding: 54px 0 32px}
+    .hero .eyebrow{display:inline-flex; gap:8px; padding:6px 10px; border-radius:999px; background: color-mix(in oklab, var(--card) 65%, transparent); border:1px solid color-mix(in oklab, var(--text) 10%, transparent); color: var(--muted); font-weight:600}
+    h1.title{font-size: clamp(34px, 4vw, 52px); line-height:1.1; margin:12px 0 10px}
+    .subtitle{font-size: clamp(16px, 1.6vw, 18px); color:var(--muted)}
+
+    .quick{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background: color-mix(in oklab, var(--card) 80%, transparent); border:1px solid color-mix(in oklab, var(--text) 10%, transparent)}
+    .chip .dot{width:8px;height:8px; box-shadow:none}
+
+    .section{margin: 40px 0}
+    .section h2{font-size: clamp(22px, 2.4vw, 28px); margin:0 0 12px}
+    .lead{color:var(--muted)}
+
+    .grid{display:grid; gap:18px}
+    .two{grid-template-columns: repeat(2, minmax(0,1fr))}
+    .three{grid-template-columns: repeat(3, minmax(0,1fr))}
+    @media (max-width: 860px){ .two, .three{grid-template-columns: 1fr} }
+
+    .card{background: color-mix(in oklab, var(--card) 92%, transparent); border:1px solid color-mix(in oklab, var(--text) 12%, transparent); border-radius: var(--radius); padding:18px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease}
+    .card:hover{transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 10px 30px -12px #0008, 0 0 0 8px var(--ring)}
+
+    .proj{display:flex; flex-direction:column; gap:10px}
+    .proj .tag{font-size:12px; letter-spacing:.4px; color:var(--muted)}
+    .proj h3{margin:0; font-size:18px}
+    .proj p{margin:0; color:var(--muted)}
+    .proj .go{margin-top:auto; display:inline-flex; gap:8px; align-items:center; font-weight:600; color:var(--accent)}
+
+    .list{display:grid; gap:10px}
+    .item{display:flex; align-items:flex-start; gap:12px; padding:12px 14px; border-radius:12px; background: color-mix(in oklab, var(--card) 80%, transparent); border:1px dashed color-mix(in oklab, var(--text) 12%, transparent)}
+    .bullet{width:8px;height:8px;border-radius:50%; background:var(--accent); margin-top:6px; flex-shrink:0}
+
+    footer{margin:50px 0 20px; color:var(--muted)}
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:14px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid color-mix(in oklab, var(--text) 14%, transparent)}
+    .btn.primary{background: var(--accent); color:white; border-color: var(--accent)}
+    .btn:hover{box-shadow:0 0 0 8px var(--ring)}
+
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container bar" role="navigation" aria-label="주요 내비게이션">
+      <div class="brand"><span class="dot" aria-hidden="true"></span> D — Portfolio</div>
+      <nav class="links" aria-label="바로가기">
+        <a class="btn" href="#about">About</a>
+        <a class="btn" href="#education">학력·자격</a>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" id="about">
+      <span class="eyebrow" aria-label="역할">데이터 마케팅 · 분석 — Portfolio</span>
+      <h1 class="title">응용통계학 × 금융공학 기반의 <br/>Data‑Driven Marketer</h1>
+      <p class="subtitle">고객 데이터를 인사이트로 바꾸고, 제품·캠페인을 실험으로 검증합니다. 퍼널·세그먼트·리텐션·LTV를 숫자로 설명하고 개선합니다.</p>
+      <div class="quick" role="list" aria-label="핵심 스펙">
+        <span class="chip" role="listitem"><span class="dot" aria-hidden="true"></span> 응용통계학 학사</span>
+        <span class="chip" role="listitem"><span class="dot" aria-hidden="true"></span> 금융공학 석사</span>
+        <span class="chip" role="listitem"><span class="dot" aria-hidden="true"></span> SAS Certificated</span>
+      </div>
+    </section>
+
+    <section class="section container" id="education">
+      <h2>학력 · 자격</h2>
+      <p class="lead">분석적 사고와 실험 문화에 최적화된 배경</p>
+      <div class="grid two">
+        <div class="card list" aria-label="학력">
+          <div class="item"><span class="bullet" aria-hidden="true"></span>
+            <div>
+              <strong>응용통계학 학사</strong>
+              <div class="muted">통계학, 실험설계(DoE), 회귀/분류, 시계열</div>
+            </div>
+          </div>
+          <div class="item"><span class="bullet" aria-hidden="true"></span>
+            <div>
+              <strong>금융공학 석사</strong>
+              <div class="muted">확률과정, 최적화, 리스크 모델링</div>
+            </div>
+          </div>
+        </div>
+        <div class="card list" aria-label="자격증">
+          <div class="item"><span class="bullet" aria-hidden="true"></span>
+            <div>
+              <strong>SAS Certificated</strong>
+              <div class="muted">데이터 전처리, 모델링, 리포팅</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="projects">
+      <h2>대표 프로젝트</h2>
+      <p class="lead">실제 문제를 정의하고, 가설→실험→성과로 연결했습니다.</p>
+      <div class="grid three">
+        <a class="card proj" href="project1.html">
+          <span class="tag">데이터마이닝 프로젝트</span>
+          <h3>Feature Engineering로 예측력 향상</h3>
+          <p>RFM/행동 이벤트 기반 피처링, 모델 비교(GBM/Logit), 리프트 개선.</p>
+          <span class="go">자세히 보기 →</span>
+        </a>
+        <a class="card proj" href="project2.html">
+          <span class="tag">이탈고객 방지 마케팅</span>
+          <h3>Churn Early‑Warning & Retention</h3>
+          <p>이탈 가능성 점수화 + 오퍼 최적화로 잔존가치(LTV) 극대화.</p>
+          <span class="go">자세히 보기 →</span>
+        </a>
+        <a class="card proj" href="projecg3.html">
+          <span class="tag">Data Driven Efficiency</span>
+          <h3>KPI 트리로 비용·성과 효율화</h3>
+          <p>퍼널 KPI 트리/대시보드로 예산 대비 CPA 18% 절감(사례 기반).</p>
+          <span class="go">자세히 보기 →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section container" id="contact">
+      <h2>Contact</h2>
+      <p class="lead">협업/채용 문의는 아래로 연락 주세요.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:you@example.com" aria-label="이메일로 문의">이메일 보내기</a>
+        <a class="btn" href="https://github.com/your-id" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn" href="#" aria-disabled="true">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>© <span id="y"></span> D • Built with clean HTML/CSS</small>
+  </footer>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+
+<!-- =============================
+ File: project1.html (stub)
+ ============================== -->
+<!--
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Project 1 — 데이터마이닝</title>
+<style>body{font:16px/1.6 system-ui, "Noto Sans KR", sans-serif; margin:0; padding:40px; max-width:900px}
+header a{color:#1461ff; text-decoration:none}
+pre{background:#0b0c0f0d; padding:14px; border-radius:10px; overflow:auto}
+</style></head>
+<body>
+  <header><a href="index.html">← 돌아가기</a></header>
+  <h1>데이터마이닝 프로젝트</h1>
+  <p>RFM 기반 세그먼트 정의 → 피처 엔지니어링 → 모델 비교(GBM/로지스틱) → 리프트/정밀도 향상.</p>
+  <h2>문제정의</h2>
+  <p>...</p>
+  <h2>데이터 & 방법론</h2>
+  <pre>• 데이터: 주문/세션/메시지 로그
+• 피처: RFM, 세션빈도, 카테고리 전환율 등
+• 모델: Gradient Boosting, Logistic, Calibration</pre>
+  <h2>성과</h2>
+  <pre>• 상위 10% 타깃으로 구매전환 +X% 리프트
+• CPA 절감, 캠페인 ROI 개선</pre>
+</body></html>
+-->
+
+<!-- =============================
+ File: project2.html (stub)
+ ============================== -->
+<!--
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Project 2 — 이탈 방지</title>
+<style>body{font:16px/1.6 system-ui, "Noto Sans KR", sans-serif; margin:0; padding:40px; max-width:900px}
+header a{color:#1461ff; text-decoration:none}
+pre{background:#0b0c0f0d; padding:14px; border-radius:10px; overflow:auto}
+</style></head>
+<body>
+  <header><a href="index.html">← 돌아가기</a></header>
+  <h1>이탈고객 방지 마케팅</h1>
+  <p>Churn Early‑Warning 점수화 & 개인화 오퍼링으로 잔존가치 극대화.</p>
+  <h2>가설</h2>
+  <p>...</p>
+  <h2>전략</h2>
+  <pre>• 위험등급 A/B/C에 따른 오퍼/빈도 차등화
+• 메시지 채널 믹스(앱푸시/알림톡/이메일)
+• A/B/n 테스트 & 홀드아웃</pre>
+  <h2>효과</h2>
+  <pre>• 월 이탈률 △p.p 감소
+• LTV/ARPU 향상</pre>
+</body></html>
+-->
+
+<!-- =============================
+ File: projecg3.html (stub)  ← 사용자가 지정한 파일명 오타를 그대로 사용
+ ============================== -->
+<!--
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Project 3 — Data Driven Efficiency</title>
+<style>body{font:16px/1.6 system-ui, "Noto Sans KR", sans-serif; margin:0; padding:40px; max-width:900px}
+header a{color:#1461ff; text-decoration:none}
+pre{background:#0b0c0f0d; padding:14px; border-radius:10px; overflow:auto}
+</style></head>
+<body>
+  <header><a href="index.html">← 돌아가기</a></header>
+  <h1>Data Driven Efficiency</h1>
+  <p>KPI 트리/대시보드로 비용‑성과 효율화. 실험 주도 예산배분.</p>
+  <h2>대시보드</h2>
+  <pre>• 퍼널 KPI 트리 (Impr→Click→Add‑to‑Cart→Purchase)
+• 채널별 CPA/ROAS, 코호트 리텐션</pre>
+  <h2>결과</h2>
+  <pre>• 예산 대비 CPA 18% 절감 (사례)
+• 의사결정 리드타임 단축</pre>
+</body></html>
+-->
