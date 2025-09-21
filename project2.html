@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>프로젝트 상세 — 이탈고객 방지 마케팅</title>
+  <style>
+  *,*::before,*::after{box-sizing:border-box}
+  html:focus-within{scroll-behavior:smooth}
+  body{margin:0;min-height:100vh;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  img,svg,video,canvas{display:block;max-width:100%}
+  button,input,select,textarea{font:inherit}
+  :root{
+    --brand:#1061ff;--ok:#16a34a;--ink:#0f172a;--muted:#64748b;--bg:#ffffff;--card:#ffffff;--line:#e2e8f0;--shadow:0 10px 30px rgba(2,6,23,.08);
+    --r-xl:22px;--r-lg:16px;--r-md:12px;--r-sm:10px;--container:900px
+  }
+  @media (prefers-color-scheme:dark){:root{--bg:#0b1220;--ink:#e6edf6;--card:#0f172a;--line:#1f2a44;--shadow:0 10px 30px rgba(0,0,0,.5)}}
+  .dark{--bg:#0b1220;--ink:#e6edf6;--card:#0f172a;--line:#1f2a44;--shadow:0 10px 30px rgba(0,0,0,.5)}
+  body{background:radial-gradient(1200px 600px at 10% -10%, rgba(16,97,255,.09), transparent 60%),radial-gradient(1100px 700px at 90% -20%, rgba(34,197,94,.08), transparent 60%),var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",Roboto,system-ui,Arial,sans-serif}
+  .container{max-width:var(--container);margin:0 auto;padding:0 20px}
+  a{color:var(--brand);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header.site{position:sticky;top:0;z-index:40;background:color-mix(in srgb, var(--bg) 70%, transparent);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .logo{width:26px;height:26px;border-radius:10px;background:conic-gradient(from 0deg,var(--brand),var(--ok),var(--brand));box-shadow:var(--shadow)}
+  .brand strong{font-size:16px;font-weight:900}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:14px;padding:8px 12px;background:var(--card);box-shadow:0 1px 0 rgba(2,6,23,.04);cursor:pointer}
+  .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+  .btn.ghost{background:transparent}
+  .hero{padding:52px 0 28px}
+  h1{font-size:36px;margin:0 0 6px;font-weight:900}
+  p.lead{color:var(--muted);font-size:18px;margin:0 0 14px}
+  section{padding:36px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shadow)}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:860px){.grid-2{grid-template-columns:1fr} h1{font-size:30px}}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+  .tag{padding:6px 10px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--muted)}
+  ul.list{margin:8px 0 0;padding-left:18px}
+  footer{padding:36px 0;border-top:1px solid var(--line);color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container nav" role="navigation" aria-label="주요">
+    <div class="brand"><div class="logo" aria-hidden="true"></div><strong>프로젝트 상세</strong></div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="btn" href="index.html">← 메인으로</a>
+      <button id="themeBtn" class="btn ghost" aria-pressed="false" title="라이트/다크 전환">🌓</button>
+    </div>
+  </div>
+</header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <h1>이탈고객 방지 마케팅</h1>
+        <p class="lead">이탈 위험 고객을 조기 탐지하여 보존 캠페인을 실행한 프로젝트입니다.</p>
+        <div class="tags">
+          <span class="tag">CRM</span><span class="tag">Churn</span><span class="tag">세그먼트</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div class="card">
+          <h2 style="margin-top:0">접근 방법</h2>
+          <ul class="list">
+            <li>로지스틱 회귀·XGBoost로 이탈 확률 스코어링</li><li>고위험군 전용 오퍼 및 고객 여정 설계</li><li>CRM 자동화 시스템과 연동</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2 style="margin-top:0">성과</h2>
+          <p>이탈률 12%p 개선, 고객 LTV 8% 증가.</p>
+          <p style="margin-top:12px"><a class="btn primary" href="index.html">메인으로 돌아가기</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">© <span id="year"></span> Portfolio. All rights reserved.</div>
+  </footer>
+
+<script>
+  const btn=document.getElementById('themeBtn');
+  if(btn){
+    btn.addEventListener('click',()=>{
+      const isDark=document.body.classList.toggle('dark');
+      btn.setAttribute('aria-pressed', String(isDark));
+      localStorage.setItem('theme', isDark? 'dark':'light');
+    });
+    (function(){ const t=localStorage.getItem('theme'); if(t==='dark'){ document.body.classList.add('dark'); btn.setAttribute('aria-pressed','true'); } })();
+  }
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
